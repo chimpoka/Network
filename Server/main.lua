@@ -1,12 +1,15 @@
+package.path = "E:/Projects/Lua/Network/?.lua;"..package.path
+local Debug = require("building-blocks/Debug")
 local GameLogic = require("GameLogic")
 
 
 function love.load()
+	love.window.setMode(1200, 900)
 	GameLogic.init()
 end
 
 function love.update(dt)
-	GameLogic.update(dt)
+	GameLogic:update(dt)
 end
 
 function love.draw()
@@ -14,5 +17,5 @@ function love.draw()
 end
 
 function love.quit()
-	os.execute("pause")
+	Debug.pause()
 end

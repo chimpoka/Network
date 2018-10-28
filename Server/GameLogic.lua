@@ -1,17 +1,22 @@
+local Vector2 = require("building-blocks/Vector2")
 local Object = require("Object")
--- local Vector2 = require("building-blocks/Vector2")
-local Vector2 = require("Vector2")
+
 
 GameLogic = {}
 
 function GameLogic:init()
-	count = 5
 	objects = {}
-	radius = 100
-	origin = Vector2.new(400, 300)
+	windowSize = Vector2.new(0, 0)
+	windowSize.x, windowSize.y = love.window.getMode()
+
+	count = 1000
+	radius = 300
+	speed = 100
+	origin = Vector2.new(windowSize.x / 2, windowSize.y / 2)
+	position = origin + Vector2.new(0,0)
 
 	for i=1, count do
-		objects[i] = Object(Vector2.new(200+i*20,200+i*20), Vector2.new(-2, 1), 100, radius, origin)
+		objects[i] = Object(position, speed, radius, origin)
 	end
 end
 	

@@ -1,20 +1,25 @@
--- local Class = require("building-blocks/ExtendAndInit")
--- local math = require("building-blocks/library/math")
--- local Vector2 = require("building-blocks/Vector2")
+local Class = require("building-blocks.ExtendAndInit")
+local math = require("building-blocks/library/math")
+local Vector2 = require("building-blocks/Vector2")
+local Debug = require("building-blocks/Debug")
 
-local Class = require("ExtendAndInit")
-local math = require("library/math")
-local Vector2 = require("Vector2")
 
 local Object = Class()
 
-function Object:init(position, direction, speed, radius, origin)
-	self.position = position or Vector2.new(0, 0)
-	self.velocity = direction or Vector2.new(1, 1)
-	self.velocity = direction.normalize() * speed
+function Object:init(position, speed, radius, origin)
+	self.randomOffset = math.rndVec2(-1, 1)
+
+	self.position = position or origin
+    self.position = self.position + self.randomOffset * radius
+    self.velocity = self.randomOffset.normalize() * speed
+
 	self.speed = speed
 	self.radius = radius
 	self.origin = origin
+
+    -- self.color = 1
+    -- self.isEnabled = false
+    -- self.id = 1
 end
 	
 function Object:update(dt)

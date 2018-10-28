@@ -1,0 +1,3 @@
+[submodule "building-blocks"]
+	path = building-blocks
+	url = https://github.com/chimpoka/building-blocks.git
